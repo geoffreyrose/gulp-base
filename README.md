@@ -2,8 +2,8 @@
 
 1. Update/Install NodeJS [https://nodejs.org/en/](https://nodejs.org/en/)
 2. Install Gulp Globally `npm install gulp -g`
-3. Install project dependencies `npm install`
-4. Navigate to project and run `gulp Watch`
+3. Install project dependencies.  Navigate to project and run `npm install`
+4. Run `gulp watch`
 
 
 ### Learn More About Gulp
