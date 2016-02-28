@@ -1,0 +1,11 @@
+$global-width: 1200px;
+$grid-row-width: $global-width;
+$breakpoints: (
+	small: 0px,
+	medium: 700px,
+	large: 900px,
+	xlarge: 1300px,
+	xxlarge: 1500px,
+);
+
+$breakpoint-classes: (small medium large xlarge xxlarge);
