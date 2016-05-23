@@ -13,16 +13,16 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     del = require('del'),
     mainBowerFiles = require('gulp-main-bower-files'),
+    babel = require('gulp-babel'),
     gulpFilter = require('gulp-filter');
 
 var sassPaths = [
-  'bower_components/foundation-sites/scss'
-  //'bower_components/motion-ui/src'
+  'bower_components/foundation-sites/scss' //remove if not using foundation with bower
 ];
 
 
 gulp.task('styles', function() {
-  return sass('src/css/scss/styles.scss', { style: 'compressed', sourcemap: true, loadPath: sassPaths  }) //expanded
+  return sass('src/css/scss/styles.scss', { style: 'compressed', sourcemap: true, loadPath: sassPaths  }) // expanded compressed
     .pipe(autoprefixer({
         browsers: ['last 2 versions', 'ie >= 9']
     }))
@@ -36,7 +36,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('iestyles', function() {
-  return sass('src/css/scss/iestyles.scss', { style: 'compressed', sourcemap: true, loadPath: sassPaths  }) //expanded
+  return sass('src/css/scss/iestyles.scss', { style: 'compressed', sourcemap: true, loadPath: sassPaths  }) // expanded compressed
     .pipe(sourcemaps.write('maps', {
       includeContent: false,
       sourceRoot: 'source'
@@ -47,12 +47,13 @@ gulp.task('iestyles', function() {
 
 gulp.task('scripts', function() {
   return gulp.src('src/js/**/*.js')
+    .pipe(babel())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())
-    .pipe(sourcemaps.write(''))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
+    .pipe(sourcemaps.write(''))
     .pipe(gulp.dest('assets/js'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
@@ -76,29 +77,34 @@ gulp.task('default', ['clean'], function() {
 
 gulp.task('browser-sync', function() {
     browserSync.init({
-        proxy: "localhost:8888" //change to project local url
+        proxy: "http://localhost:8888/" //change to project's local url
     });
 });
  
-gulp.task('bower-files', function(){
+gulp.task('pre-bower-files', function(){
     var filterJS = gulpFilter('**/*.js', { restore: true });
     var filterIMG = gulpFilter('**/*.png', '**/*.jpg', '**/*.gif', { restore: true });
 
     return gulp.src('bower.json')
         .pipe(mainBowerFiles())
-        .pipe(gulp.dest('assets/lib'))
+        .pipe(gulp.dest('assets/lib/delete')) //temporary folder, needed to trick it into loading in my .babelrc file, the files created are useless because if they are written with ES20015 and they won't really work unless they are ran through babel.
         .pipe(filterJS)
+        .pipe(babel())
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(gulp.dest('assets/lib'))
         .pipe(filterJS.restore)
         .pipe(filterIMG)
-        .pipe(gulp.dest('assets/img'))
+        .pipe(gulp.dest('assets/img'));
+});
+
+gulp.task('bower-files', ['pre-bower-files'],  function() {
+    return del(['assets/lib/delete']); //delete temporary folder
 });
 
 gulp.task('watch', function() {
   browserSync.init({
-    proxy: "localhost:8888" //change to project local url
+    proxy: "http://localhost:8888/" //change to project's local url
   });
 
   gulp.watch("**/*.php").on('change', browserSync.reload);

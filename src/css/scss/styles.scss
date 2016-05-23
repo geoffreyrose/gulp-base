@@ -1,12 +1,25 @@
 @import 'foundation';
-@import 'custom/bits';
-@import 'custom/mixins';
-@import 'custom/extends';
+@import 'bits/colors';
+@import 'bits/setup';
+@import 'bits/mixins';
+@import 'bits/extends';
+
 
 //Foundation 
-@import 'custom/settings';
+@import 'foundation/settings';
 @include foundation-global-styles;
 @include foundation-grid;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 @include foundation-form-error;
+
+@import 'components/typography';
+@import 'components/basic-layout';
+@import 'components/forms';
+@import 'components/navigation';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/table';
+
+/// injected CSS message
+#__bs_notify__ {display: none !important;}

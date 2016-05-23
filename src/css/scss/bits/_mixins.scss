@@ -4,7 +4,7 @@
 	font-weight: 300;
 }
 
-@mixin heading-font-regular-light {
+@mixin heading-font-regular-italic {
 	font-family: $heading-font, $heading-fallback;
 	font-style: italic;
 	font-weight: 300;
