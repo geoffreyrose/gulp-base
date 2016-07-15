@@ -9,7 +9,7 @@
 	- You will need this if you are using Foundation 6.2 or later (or if you are using any JavaScript written in ES2015) 
 	- If you are not using either of these, there is nothing to worry about, your JavaScript will compile just the same.
 3. Install project dependencies. Navigate to project (in terminal) and run `npm install` and `bower install`
-	- This will install any dependences in your `package.jso` and `bower.json`.
+	- This will install any dependences in your `package.json` and `bower.json`.
 
 Everything is now ready to use.
 
