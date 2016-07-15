@@ -8,7 +8,7 @@
 2. I also included a `.babelrc` file (make sure you have this file), which is used by the "babel" npm package, which is needed for compiling JavaScript written in ES2015.
 	- You will need this if you are using Foundation 6.2 or later (or if you are using any JavaScript written in ES2015) 
 	- If you are not using either of these, there is nothing to worry about, your JavaScript will compile just the same.
-3. Install project dependencies. Navigate to project in (in terminal) and run `npm install` and `bower install`
+3. Install project dependencies. Navigate to project (in terminal) and run `npm install` and `bower install`
 	- This will install any dependences in your package.json and bower.json.
 
 Everything is now ready to use.
