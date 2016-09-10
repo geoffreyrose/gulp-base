@@ -1,7 +1,7 @@
 ## Prerequisites
 
 1. Make sure you have NodeJS and NPM Updated/Installed [https://nodejs.org/en/](https://nodejs.org/en/)
-2. Make sure the `ruby sass gem` is intalled [http://sass-lang.com/install](http://sass-lang.com/install)
+2. Make sure the `ruby sass gem` is installed [http://sass-lang.com/install](http://sass-lang.com/install)
 3. Install gulp globally `npm install -g gulp` 
 
 ## Setup
