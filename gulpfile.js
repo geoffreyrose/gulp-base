@@ -14,15 +14,35 @@ var gulp = require('gulp'),
     del = require('del'),
     mainBowerFiles = require('gulp-main-bower-files'),
     babel = require('gulp-babel'),
-    gulpFilter = require('gulp-filter');
+    gulpFilter = require('gulp-filter'),
+    util = require('gulp-util'),
+    plumber = require('gulp-plumber');
 
 var sassPaths = [
   'bower_components/foundation-sites/scss' //remove if not using foundation with bower
 ];
 
+var util = require('gulp-util');
+var plumber = require('gulp-plumber');
+// our custom error handler
+var errorHandler = function(){
+    // default appearance
+    return plumber(function(error){
+        // add indentation
+        var msg = error.codeFrame.replace(/\n/g, '\n    ');
+        // output styling
+        util.log('|- ' + util.colors.bgRed.bold('Build Error in ' + error.plugin));
+        util.log('|- ' + util.colors.bgRed.bold(error.message));
+        util.log('|- ' + util.colors.bgRed('>>>'));
+        util.log('|\n    ' + msg + '\n           |');
+        util.log('|- ' + util.colors.bgRed('<<<'));
+    });
+};
+
 
 gulp.task('styles', function() {
   return sass('src/css/scss/styles.scss', { style: 'compressed', sourcemap: true, loadPath: sassPaths  }) // expanded compressed
+    .pipe(errorHandler())
     .pipe(autoprefixer({
         browsers: ['last 2 versions', 'ie >= 9']
     }))
@@ -37,6 +57,7 @@ gulp.task('styles', function() {
 
 gulp.task('iestyles', function() {
   return sass('src/css/scss/iestyles.scss', { style: 'compressed', sourcemap: true, loadPath: sassPaths  }) // expanded compressed
+    .pipe(errorHandler())
     .pipe(sourcemaps.write('maps', {
       includeContent: false,
       sourceRoot: 'source'
@@ -47,6 +68,7 @@ gulp.task('iestyles', function() {
 
 gulp.task('scripts', function() {
   return gulp.src('src/js/**/*.js')
+    .pipe(errorHandler())
     .pipe(babel())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
@@ -61,6 +83,7 @@ gulp.task('scripts', function() {
 
 gulp.task('images', function() {
   return gulp.src('src/img/**/*')
+    .pipe(errorHandler())
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('assets/img'))
     .pipe(notify({ message: 'Images task complete' }));
@@ -86,6 +109,7 @@ gulp.task('pre-bower-files', function(){
     var filterIMG = gulpFilter('**/*.png', '**/*.jpg', '**/*.gif', { restore: true });
 
     return gulp.src('bower.json')
+        .pipe(errorHandler())
         .pipe(mainBowerFiles())
         .pipe(gulp.dest('assets/lib/delete')) //temporary folder, needed to trick it into loading in my .babelrc file, the files created are useless because if they are written with ES20015 and they won't really work unless they are ran through babel.
         .pipe(filterJS)
