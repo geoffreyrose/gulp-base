@@ -22,8 +22,6 @@ var sassPaths = [
   'bower_components/foundation-sites/scss' //remove if not using foundation with bower
 ];
 
-var util = require('gulp-util');
-var plumber = require('gulp-plumber');
 // our custom error handler
 var errorHandler = function(){
     // default appearance
