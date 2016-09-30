@@ -39,7 +39,7 @@ To use, run `gulp iestyles`
 
 ### Gulp scripts
 
-Minifies JavaScript and runs through `babel` to compile your `ES2015` JavaScript you may use.
+Minifies JavaScript and runs through `babel` to compile any `ES2015` JavaScript you may use.
 
 Saves to `assets/js`
 
