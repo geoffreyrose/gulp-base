@@ -19,12 +19,11 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber');
 
 var sassPaths = [
-  'bower_components/foundation-sites/scss' //remove if not using foundation with bower
+  'bower_components/foundation-sites/scss' //update as needed
 ];
 
-// our custom error handler
+// error handler // https://andidittrich.de/2016/03/prevent-errors-from-breaking-gulp-watch.html
 var errorHandler = function(){
-    // default appearance
     return plumber(function(error){
         // add indentation
         var msg = error.codeFrame.replace(/\n/g, '\n    ');
@@ -61,7 +60,7 @@ gulp.task('iestyles', function() {
       sourceRoot: 'source'
     }))
     .pipe(gulp.dest('assets/css'))
-    .pipe(notify({ message: 'Styles task complete' }))
+    .pipe(notify({ message: 'IE Styles task complete' }))
 });
 
 gulp.task('scripts', function() {
@@ -109,7 +108,7 @@ gulp.task('pre-bower-files', function(){
     return gulp.src('bower.json')
         .pipe(errorHandler())
         .pipe(mainBowerFiles())
-        .pipe(gulp.dest('assets/lib/delete')) //temporary folder, needed to trick it into loading in my .babelrc file, the files created are useless because if they are written with ES20015 and they won't really work unless they are ran through babel.
+        .pipe(gulp.dest('assets/lib/delete')) //temporary folder, needed to trick it into loading in the .babelrc file, the files created are useless because if they are written with ES20015 and they won't really work unless they are ran through babel.
         .pipe(filterJS)
         .pipe(babel())
         .pipe(rename({suffix: '.min'}))
@@ -129,12 +128,11 @@ gulp.task('watch', function() {
     proxy: "http://localhost:8888/" //change to project's local url
   });
 
-  gulp.watch("**/*.php").on('change', browserSync.reload);
-  gulp.watch("**/*.html").on('change', browserSync.reload);
+  gulp.watch('**/*.php').on('change', browserSync.reload);
+  gulp.watch('**/*.html').on('change', browserSync.reload);
 
   // Watch .scss files
-  gulp.watch('src/css/**/*.scss', ['styles']);
-  gulp.watch('src/css/**/*.scss', ['iestyles']);
+  gulp.watch('src/css/**/*.scss', ['styles', 'iestyles']);
 
   // Watch .js files
   gulp.watch('src/js/**/*.js', ['scripts']).on('change', browserSync.reload);
