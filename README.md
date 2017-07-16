@@ -22,13 +22,13 @@ Below are the tasks that are included in the `gulpfile.js` and what they do.
 ### Gulp styles
 
 Complies `styles.scss` and uses autoprefixer, so there is no need to use any prefixes in your source files.
-	- Currently set to `browsers: ['last 2 versions', 'ie >= 9']`, change as need in `gulpfile.js`
-	- To compile a different file, update `gulpfile.js`
-	- If you are not using `Zurb's Foundation` with bower, remove `bower_components/foundation-sites/scss` from `sassPaths` array in `gulpfile.js`
-		- Additionally if you are referencing any `scss` files inside of `styles.scss` located outside of `src` folder or other `bower_components/*` scss files, it may be easier to include the path in `sassPaths` array.
+- Currently set to `browsers: ['last 2 versions', 'ie >= 9']`, change as need in `gulpfile.js`
+- To compile a different file, update `gulpfile.js`
+- If you are not using `Zurb's Foundation` with bower, remove `bower_components/foundation-sites/scss` from `sassPaths` array in `gulpfile.js`
+- Additionally if you are referencing any `scss` files inside of `styles.scss` located outside of `src` folder or other `bower_components/*` scss files, it may be easier to include the path in `sassPaths` array.
 
 This task also includes code to compile a `iestyle.css` if you need it.
-	- This is commented out by default, uncomment to include in this task
+- This is commented out by default, uncomment to include in this task
 
 Saves to `assets/css/styles.css`
 Saves to `assets/css/iestyles.css`
@@ -47,8 +47,8 @@ To use, run `gulp scripts`
 ### Gulp bower-files
 
 Goes through and complies/minify your bower components  `.js` files and moves them to a `assets/lib`
-	- This will also filter any `.png`, `.jpg`, `.gif` inside of the `assets/img/[package-name]` folder
-	- Most likely you will need to add "overrides" in your bower.json (see the bower.json in this repo for an example)
+- This will also filter any `.png`, `.jpg`, `.gif` inside of the `assets/img/[package-name]` folder
+- Most likely you will need to add "overrides" in your bower.json (see the bower.json in this repo for an example)
 
 To use, run `gulp bower-files`
 
