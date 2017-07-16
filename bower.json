@@ -1,38 +1,38 @@
 {
-  "name": "gulp-base",
-  "version": "1.0.0",
-  "authors": [
-    "Geoffrey Rose (github.com/geoffreyrose)"
-  ],
-  "moduleType": [
-    "node"
-  ],
-  "license": "MIT",
-  "homepage": "https://github.com/geoffreyrose/gulp-base#readme",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery.maskedinput": "~1.4.1",
-    "respond": "~1.4.2",
-    "REM-unit-polyfill": "~1.3.4",
-    "foundation-sites": "~6.3.0"
-  },
-  "overrides": {
-    "foundation-sites": {
-      "main": [
-        "js/*.js"
-      ]
+    "name": "geoffrey-rose-design",
+    "version": "4.0.0",
+    "authors": [
+        "Geoffrey Rose <geoffrey@geoffreyrosedesign.com>"
+    ],
+    "moduleType": [
+        "node"
+    ],
+    "license": "MIT",
+    "homepage": "geoffreyrosedesign.com",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery.maskedinput": "~1.4.1",
+        "respond": "~1.4.2",
+        "REM-unit-polyfill": "~1.3.4",
+        "foundation-sites": "~6.3.0"
     },
-    "respond": {
-      "main": [
-        "src/respond.js"
-      ]
+    "overrides": {
+        "foundation-sites": {
+            "main": [
+                "js/*.js"
+            ]
+        },
+        "respond": {
+            "main": [
+                "src/respond.js"
+            ]
+        }
     }
-  }
 }

@@ -175,5 +175,5 @@ gulp.task('clean', function() {
 });
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images', 'bower-files' );
+    gulp.start('styles', 'scripts', 'images', 'bower-files', 'watch' );
 });
